@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} All Properties !!{% endblock %}
+{% block stylesheets %}
+{{parent()}}
+<link rel="stylesheet" href="/css/card.css">
+{% endblock %}
+{% block body %}
+
+<section id="boat_services" class="my-5">
+  <div class="container">
+    <div class="title mb-1" style="display: flex;justify-content: space-between;">
+    <div>
+      <h2>Hamza Agence - homes around the world</h2>
+      <p>Browse a new selection of homes verified for quality & comfort</p>
+     </div>
+      <div>
+        <a href="{{path('new')}}" class="btn btn-primary"> Create a new Property </a>
+    </div>
+    </div>
+    <div class="row">
+        {% for property in properties %}
+            <div class="col-md-4">
+                <figure>
+                    <img src="{{property.image}}" class="mb-2 cardImg" alt="">
+                    <figcaption class="inside"></figcaption>
+                    <figcaption class="outside">
+                        <a href="{{path('like',{'id':property.id})}}" class="like">
+                            {% if app.user != null and property.LikedByUser(app.user) %}
+                                <i class="fas fa-heart"></i>
+                            {% else %}
+                                <i class="far fa-heart"></i>
+                            {% endif %} 
+                                <span class="js-likes">{{property.likes | length}}</span>
+                                <span class="js-label">j'aime</span>
+                        </a>
+                       <a href="{{path('show',{'id':property.id})}}"><h2 class="text-black">Homes in {{property.city}}</h2> </a> 
+                        <p class="medium text-secondary mb-0 font-weight-bold">{{ property.price|number_format(0, '.') }} DH</p>
+                        <p class="small text-color mb-0">Posted By {{property.user.username}}</p>
+                        <p class="text-desc">Modern art and age-old pubs—best explored from homes verified for quality and comfort.</p>
+                    </figcaption>
+                </figure> 
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</section> 
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

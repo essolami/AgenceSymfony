@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Essolami Agence{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
+    <link rel="stylesheet" href="/css/style.css">
+    {% block stylesheets %}{% endblock %}
+        
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="{{path('home')}}">Mon Agence</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"> 
+          {% if app.user != null %}
+            {% if is_granted('ROLE_ADMIN') %}
+              <li class="nav-item ">
+                <a class="nav-link {% if( current_menu is defined and current_menu=='admin') %} active {% endif %}" href="{{path('admin')}}">Admin Panel</a>
+              </li>
+            {% endif %}
+              <li class="nav-item ">
+                <a class="nav-link {% if( current_menu is defined and current_menu=='properties') %} active {% endif %}" href="/bien"> My Properties <span class="sr-only">(current)</span></a>
+              </li> 
+              {# <li class="nav-item ">
+                <a class="nav-link {% if( current_menu is defined and current_menu=='registration') %} active {% endif %}" href="{{path('new')}}">Add Property</a>
+              </li> #}
+              <li class="nav-item ">
+                <a class="nav-link" href="{{path('logout')}}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item {% if( current_menu is defined and current_menu=='login') %} active {% endif %}">
+                <a class="nav-link" href="{{path('login')}}">Login</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link {% if( current_menu is defined and current_menu=='registration') %} active {% endif %}" href="{{path('security_registration')}}">Registre</a>
+              </li>
+            {% endif %}
+        </ul>
+      </div>
+    </nav>
+    {% block body %}{% endblock %}
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    {# <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> #}
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script> #}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>  
+    <script src="/js/scripts.js"></script> 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+    <script>  ClassicEditor.create( document.querySelector( 'textarea' ), {
+              heading: {
+                      options: [
+                          { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                          { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                          { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                      ]
+                  }
+              } )
+              .catch( error => {
+                  console.log( error );
+              } );     
+    </script>
+    {% block javascripts %}{% endblock %}
+  </body>
+</html>

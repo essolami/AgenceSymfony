@@ -1,0 +1,8 @@
+artgris.delete: 'Remove'
+Path: 'Path:'
+File: 'File'
+Add: 'Add'
+Close: 'Close'
+File Manager: 'File Manager'
+artgris.media.path.placeholder: 'No document'
+artgris.media.alt.placeholder: 'No description'

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Gérer les biens{% endblock %}
+
+{% block stylesheets %} 
+{# {% include "includes/datatablecss.html.twig" %} #}
+{% endblock %}
+
+{% block body %}
+
+
+
+
+
+<div class="container my-4" id="properties">
+{% include '/includes/MenuAdmin.html.twig' %}
+
+    {% for messages in app.flashes('sucess')%}
+        <div class="alert alert-success">
+            {{messages}}
+        </div>
+    {% endfor %}
+    <h1>Gérer les biens</h1>
+    <table class="table table-striped table-bordered dt-responsive nowrap" id="datatable">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+                <th>Price</th>
+                <th>Likes</th>
+                <th>Surfaces</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for property in properties %}
+        <tr>
+            <td>{{property.title}}</td>
+            <td>
+                
+                <a href="{{path('edit',{id:property.id})}}" class="btn btn-dark">Edit</a>
+                <a href="{{path('show',{'id':property.id})}}" class="btn btn btn-success">Show</a>
+                <a  class="btn btn-danger delete-property" data-id="{{property.id}}">Delete</a>
+            </td>
+            <td>{{property.price | number_format(0,'',' ')}} DH</td>
+            <td>     {{ property.likes|length }} like </td>
+            <td>     {{ property.surface }} </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('new')}}" class="btn btn-primary"> Create a new Property </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="/js/main.js"></script>
+
+ <script>
+$(document).ready(function() {
+    $('#datatable').DataTable();
+} );
+</script>
+{#{% include "includes/datatablejs.html.twig" with {"data":properties} %} #}
+{% endblock %}

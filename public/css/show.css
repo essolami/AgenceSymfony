@@ -1,0 +1,296 @@
+.main {
+        max-width: 75%;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        height: 100vh;
+        padding: 10px;
+       }
+       .left-icon {
+        display: inline-block; 
+        float: left;
+        height: auto;
+        width: 7%;
+        padding: 1em;
+        margin-right: 10px;
+       }
+       .left-icon>div {
+        margin-bottom: 15px; 
+        border-radius: 50%;
+       } 
+       #left-circle {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+       }
+       #left-circle:hover {
+        border: 2px solid blue;
+       }
+       @media (max-width: 768px) {
+        .main {
+        max-width: 100%;
+        margin:0;
+       }
+        .left-icon { 
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: 15%;
+        margin-bottom:0;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+       }
+       .left-icon>div {
+        margin-bottom:0;
+       }
+       #left-circle {
+        height: 60px;
+        width: 60px;
+        justify-content: center;
+        text-align: center;
+        margin-right: 20px;
+        bottom: 0;
+       }
+       }
+       .column {
+        float: left;
+        width: 43%;
+        height: 90vh;
+        justify-content: center;
+        margin-right: 13px;
+        margin-top:10px;
+       }
+       .row:after {
+        content: "";
+        clear:both;
+        display: table;
+       }
+       @media screen and (max-width: 600px) {
+        .column {
+        width: 100%;
+        height: 90vh;
+        margin-bottom: 10px;
+        right:0;
+        left:0;
+        top:0;
+       }
+         p2 {
+        font-size: 1em;
+       }
+        p {
+        font-size: 0.8em;
+       }
+        li {
+        font-size: 1em;
+       }
+        .icon-box {
+        margin-top: 100px;
+        margin-bottom: 40px;
+       } 
+       .price-button {
+        margin-top: 40px;
+       }
+       }
+       .row:after {
+        content: "";
+        display: table;
+       }
+       #img-holder {
+        /* background-image: url('https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261'); */
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 90vh;
+       } 
+       .top-rate-button {
+        margin-left: 10px;
+        background-color:rgb(11, 105, 93);
+        height: 60px;
+        width: 100px;
+        padding: 0.5em;
+        border: none;
+        border-radius: 10px; 
+        font-weight: 600;
+        color: #fff;
+       }
+       /* li {
+        font-size: 0.7em;
+        margin-bottom: 10px;
+       } */
+       .icon-box {
+        display: flex;
+        flex-direction: row;
+        height: 6vh;
+        width: 100%; 
+       margin-top: 10px;
+       }
+       .icon-box>div {
+        width: 33.33%;
+        height: inherit;
+       }
+       #flex-icon {
+        width: 100%;
+        height:100%;
+       }
+       .price-button {
+        background-color: #121212;
+        height: 8vh;
+        width: 90%;
+        margin-left: 30px;
+        margin-top: 15px; 
+        padding: 0.5em;
+        color: white;
+        font-weight: bold;
+        font-size: 1em;
+        display: inline-block;
+        text-align: center;
+        border: none; 
+        border-radius: 5px;
+        transition: all .3s ease;
+       }
+       .price-button:hover {
+        background-color: rgba(0,0,0,0.8);
+        cursor: pointer;
+       }
+
+       .price{
+        font-size: 1.4rem;
+        /* padding-left: 0%; */
+        color: #002967;
+   
+       }
+
+
+
+
+    .body-blackout {
+        position: fixed;
+        z-index: 1010;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.65);
+        display: none;
+       }
+       .body-blackout.is-blacked-out {
+        display: block;
+       }
+       .popup-modal {
+        width: auto;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        width: 980px;
+        height: auto;
+        max-width: 50%;
+      
+        background-color: #fff;
+        border-radius: 16px;
+        position: fixed;
+        left: 50%;
+        top: 56%;
+        transform: translate(-50%, -50%);
+        padding: 16px 26px;
+        opacity: 0;
+        z-index: 1011;
+        overflow-y: auto;
+        display: none;
+       }
+       .popup-modal .link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       }
+        
+       
+       
+       
+       .popup-modal .icon-acadomia {
+           /* background-color: #000; */
+           color: #57c2dc;
+           font-size: 40px;
+           height: 70px;
+           width: 200px;
+       }
+       .popup-modal .icon-acadomia:before {
+        margin: 0 -63px 0 0;
+       }
+       .popup-modal.is--visible {
+        opacity: 1;
+        pointer-events: auto;
+        display: block;
+       }
+       .popup-modal__close {
+        position: absolute;
+        font-size: 1.2rem;
+        right: -10px;
+        top: -10px;
+        cursor: pointer;
+       }
+       .popup-modal .grid-url {
+        display: grid;
+        grid-gap: 10px;
+        }
+       .close {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        width: 32px;
+        height: 32px;
+        opacity: 0.3;
+       }
+       .close:hover {
+        opacity: 1;
+       }
+       .close:before,
+       .close:after {
+        position: absolute;
+        left: 15px;
+        content: ' ';
+        height: 33px;
+        width: 2px;
+        background-color: #333;
+       }
+       .close:before {
+        transform: rotate(45deg);
+       }
+       .close:after {
+        transform: rotate(-45deg);
+       }
+       
+       
+       @media screen and (max-width: 991px)
+       {
+        .popup-modal
+        {
+        max-width: 90% !important;
+        max-height:75% !important;
+        margin-top: 4%;
+        }
+       }
+       
+        .popup-modal .grid-url {
+        grid-template-columns: repeat(1, 1fr);
+        }
+        .popup-modal .grid-url a {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        }
+       
+       
+       .fa-facebook {
+         background: #3B5998;
+         color: white;
+       }
+       
+       .fa{
+         padding: 20px;
+         font-size: 30px;
+         width: 50px;
+         text-align: center;
+         text-decoration: none;
+         margin: 5px 2px;
+       }

@@ -1,0 +1,40 @@
+# config/packages/security.yaml
+security:
+    encoders:
+      App\Entity\User:
+        algorithm: bcrypt
+    providers:
+        my_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+
+            form_login:
+                login_path: login
+                check_path: login
+                provider: my_provider
+                
+
+            logout:
+                path: /logout
+                target: /
+
+            
+            #guard:
+                #authenticators:
+                    #- App\Security\UserAuthenticator
+            #logout:
+                #path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+    access_control:
+            - { path:  ^/inscription , roles: IS_AUTHENTICATED_ANONYMOUSLY}
+            - { path:  ^/login , roles: IS_AUTHENTICATED_ANONYMOUSLY}
+            - { path:  ^/logout , roles: ROLE_USER}
+            - { path:  ^/admin , roles: ROLE_ADMIN}

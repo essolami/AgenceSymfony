@@ -1,0 +1,144 @@
+{# {% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    <h1>Essolami Agence Immobiler</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
+         velit consectetur minus error explicabo quos quod. Tempore deserunt repellat ab, iure eaque est explicabo neque minima repellendus eos sint maxime exercitationem,
+         ratione at eligendi, rem aliquid sit. Cupiditate rem, perferendis recusandae, ad optio ratione distinctio unde maiores tempora repellendus natus.
+    </p>
+     
+</div>
+<div class="container mt-5">
+    <h2>The Latest Properties</h2>
+    <div class="row flex mt-2">
+        {% for property in properties %}
+        <div class="col-4 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{path('show',{'id':property.id})}}">{{property.title}}</a>
+                    </h5>
+                    <p class="card-text" > {{property.city}} ( {{property.postalCode}} )
+                        <div class="text-primary" style="font-weight: bold; font-size : 1.3rem">{{property.price | number_format(0,'',' ')}} DH</div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %} #}
+{% extends 'base.html.twig' %}
+
+{% block title %} All Properties !!{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link rel="stylesheet" href="/css/card.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="jumbotron">
+   {% include '/includes/Search.html.twig' %}
+</div>
+
+
+
+
+
+
+<section id="boat_services" class="my-5">
+  <div class="container">
+    <div class="title mb-1">
+      <h2>Hamza Agence - homes around the world</h2>
+      <p>Browse a new selection of homes verified for quality & comfort</p>
+    </div>
+    <div class="row">
+        {% for property in pagination %}
+            <div class="col-md-4">
+                <figure>
+                    <img src="{{property.image}}" class="mb-2 cardImg" alt="">
+                    <figcaption class="inside"></figcaption>
+                    <figcaption class="outside">
+                        <a href="{{path('like',{'id':property.id})}}" class="like">
+                            {% if app.user != null and property.LikedByUser(app.user) %}
+                                <i class="fas fa-heart"></i>
+                            {% else %}
+                                <i class="far fa-heart"></i>
+                            {% endif %} 
+                                <span class="js-likes">{{property.likes | length}}</span>
+                                <span class="js-label">j'aime</span>
+                        </a>
+                        <a href="{{path('show',{'id':property.id})}}"><h2 class="text-black">Homes in {{property.city}}</h2> </a>
+                        <p class="medium text-secondary mb-0 font-weight-bold">{{ property.price|number_format(0, '.') }} DH</p>
+                        <p class="small text-color mb-0">Posted By {{property.user.username}}</p>
+                        <p class="text-desc">Modern art and age-old pubs—best explored from homes verified for quality and comfort.</p>
+                    </figcaption>
+                </figure> 
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</section>     
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{# <div class="container mt-5" id="container mt-5">
+    <h2>All Properties</h2>
+    <div class="row flex">
+        {% for property in pagination %}
+        <div class="col-4 mt-2">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{path('show',{'id':property.id})}}">{{property.title}} | {{property.user.username}}</a>
+                    </h5>
+                    <p class="card-text" > {{property.city}} ( {{property.postalCode}} )
+                        <div class="text-primary" style="font-weight: bold; font-size : 1.3rem">{{property.price | number_format(0,'',' ')}} DH</div>
+                    </p>
+                    <a href="{{path('like',{'id':property.id})}}" class="like">
+                        {% if app.user != null and property.LikedByUser(app.user) %}
+                        <i class="fas fa-thumbs-up"></i>
+                        {% else %}
+                        <i class="far fa-thumbs-up"></i>
+                        {% endif %}
+
+                        
+                        <span class="js-likes">{{property.likes | length}}</span>
+                       
+                    
+                    <span class="js-label">j'aime</span>
+                </a>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+#}
+{% endblock %}
+
+{% block javascripts %}
+<script src="/js/card.js"></script>
+{% endblock %} 
+
